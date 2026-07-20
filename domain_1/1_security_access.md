@@ -41,3 +41,9 @@
 # IV. Policy
 
 * 자격 증명 또는 리소스와 연결될 때 해당 권한을 정의하는 AWS 객체
+
+# V. AWS Control Tower, AWS Organizations
+
+* AWS Organizations는 여러 계정을 묶고 구조화하는 기본 뼈대
+
+* AWS Control Tower는 그 위에 보안과 운영 체계를 자동으로 입혀주는 오케스트레이션 도구
