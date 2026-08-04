@@ -9,49 +9,49 @@
 
   * ARN: Amazon Resource Name. 전체 AWS 영역 내에서 고유한 식별자를 가진다.
 
-  * 표준 ARN 구조: `arn:partition:service:region:account-id:resource`
+    * 표준 ARN 구조: `arn:partition:service:region:account-id:resource`
 
-  * partition: aws (일반 리전), aws-cn (중국), aws-us-gov (미국 정부) etc.
+    * partition: aws (일반 리전), aws-cn (중국), aws-us-gov (미국 정부) etc.
 
-  * service: AWS 서비스 종류. s3, iam, lambda etc.
+    * service: AWS 서비스 종류. s3, iam, lambda etc.
 
-  * region: 리소스가 위치한 region 이름. ex: ap-northeast-2
+    * region: 리소스가 위치한 region 이름. ex: ap-northeast-2
 
-  * account-id: 전체 AWS 내에서 고유한 ID. 12자리로 구성
+    * account-id: 전체 AWS 내에서 고유한 ID. 12자리로 구성
 
-  * resource: 리소스 ID 또는 경로
+    * resource: 리소스 ID 또는 경로
 
-  * 표준 ARN 예시: `arn:aws:iam::123456789012:user/oscar` (IAM은 전역 서비스이기 때문에 region이 비어있음)
+    * 표준 ARN 예시: `arn:aws:iam::123456789012:user/oscar` (IAM은 전역 서비스이기 때문에 region이 비어있음)
 
 
   * IAM 계정에 접근하는 방법
 
-  * 콘솔 패스워드
+    * 콘솔 패스워드
 
-  * Access Key: 자격이 계속 유효하기 때문에 보안상의 이유로 다른 대안을 추천함
+    * Access Key: 자격이 계속 유효하기 때문에 보안상의 이유로 다른 대안을 추천함
 
-  * SSH Key: ssh-rsa 또는 PEM 형식으로 된 OpsnSSH Format
+    * SSH Key: ssh-rsa 또는 PEM 형식으로 된 OpsnSSH Format
 
-  * Server Certificates: AWS Certificate Manager(ACM)를 이용하는 것을 추천. 공식 문서에서는 ACM을 지원하지 않는 리전에서는 IAM만 이용하도록 조언함.
+    * Server Certificates: AWS Certificate Manager(ACM)를 이용하는 것을 추천. 공식 문서에서는 ACM을 지원하지 않는 리전에서는 IAM만 이용하도록 조언함.
 
-  
+
   * 새로운 IAM User를 생성할 때는 콘솔 패스워드, 액세스 키 중 하나 이상을 반드시 포함해야 함.
 
   * 기본적으로 AWS CLI, AWS API에 대해서는 어떠한 자격 증명도 없음
 
-  
+ 
   * 권한: 기본적으로는 아무 권한도 없음. 최소 권한을 부여한 여러 IAM 계정을 생성하는 방식을 사용
 
   * IAM User는 오직 하나의 Account에만 소속됨
 
-  
+ 
   * 서비스 계정으로서의 IAM User
 
-  * IAM User는 AWS 서비스를 요청하기 위해 자격 증명을 이용하는 애플리케이션에 사용될 수 있음
+    * IAM User는 AWS 서비스를 요청하기 위해 자격 증명을 이용하는 애플리케이션에 사용될 수 있음
 
-  * 장기간 유효한 자격증명을 이용할 경우 애플리케이션에 하드코딩하면 안 됨
+    * 장기간 유효한 자격증명을 이용할 경우 애플리케이션에 하드코딩하면 안 됨
 
-  * 정해진 위치에서 자격 증명을 주입하기 위해 AWS SDK, AWS CLI를 이용할 수 있음
+    * 정해진 위치에서 자격 증명을 주입하기 위해 AWS SDK, AWS CLI를 이용할 수 있음
 
 
 # 2. IAM User Group
@@ -121,7 +121,7 @@
 
   * 자격 증명 정책에서 허용할 수 있는 최대한의 권한을 정의해놓는 기능
 
-  
+ 
   * 주의사항
 
     * 권한의 최대 범위를 지정하지만 권한 자체를 부여하지는 않는다.
