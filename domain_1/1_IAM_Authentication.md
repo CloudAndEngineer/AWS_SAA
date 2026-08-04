@@ -1,5 +1,6 @@
 # I. 기본 사항
 
+
   * 공동 책임 모델
 
   * AWS 글로벌 인프라
@@ -12,7 +13,9 @@
 
   * 계정
 
+
 # II. IAM 및 인증 / 인가
+
 
   1. IAM User
 
@@ -69,6 +72,7 @@
 
 	* 정해진 위치에서 자격 증명을 주입하기 위해 AWS SDK, AWS CLI를 이용할 수 있음
 
+
   2. IAM User Group
 
     * IAM 사용자의 집합
@@ -81,7 +85,8 @@
 
 	* AWS User를 기본적으로 포함하는 User Group은 없음
 
-  3. IAM Policy
+
+  3. Policy
 
     * 권한을 정의하는 객체
 
@@ -92,18 +97,75 @@
 
 	* Identity-Based
 
+	* 예를 들어, 사용자 John이 특정 EC2 리소스를 이용할 수 있는 권한을 John User에게 할당할 수 있다.
+
 	* Resource-Based
+
+	* 예를 들어, 특정 S3 Bucket에 User A, User B가 적혀있는 AllowList를 할당할 수 있다.
 
 	* VPC Endpoint
 
+	* VPC Endpoint를 생성하면 기본적으로 전체 액세스가 허용되지만, 사용자 지정 정책을 연결하여 특정 보안 경계를 구축할 수 있음
+
 	* Permissions Boundaries
+
+	* Identity-Based Policy에서 최대한의 권한을 정의해놓는 기능
 
 	* AWS Organizations Service Control Policies(SCP)
 
+	* 조직 또는 조직 단위 내 모든 Account의 IAM User에게(Root 포함) 일괄적으로 적용할 수 있는 정책
+
+	* 단, Organization을 생성한 Management Account는 영향을 받지 않는다.
+
 	* AWS Organizations Resource Control Policies(RCP)
+
+	* 조직 내부 Account들이 소유한 모든 리소스의 최대 권한을 강제할 때 사용됨
+
+	* 실수로 외부 계정에 외부로 노출해서는 안 되는 리소스를 명시적으로 허용하는 Identity-Based Policy를 설정하더라도, RCP에서 Implicit Deny 또는 Explicit Deny 되었으면 접근이 거부되어 안전장치 역할을 한다.
 
 	* ACL
 
+	* Resource-Based Ploicy와 유사, JSON 형식을 사용하지 않음
+
 	* Resource Access Manager Shares(RAMS)
 
+	* 다른 계정과, 또는 한 Organizations 내에서 리소스를 공유할 수 있다.
+
 	* Session
+
+	* AWS STS에서 생성된 임시 세션에 부여할 수 있는 최대 권한
+
+
+  4. Permission Boundaries
+
+    * 자격 증명 정책에서 허용할 수 있는 최대한의 권한을 정의해놓는 기능
+
+	
+	* 주의사항
+
+    * 권한의 최대 범위를 지정하지만 권한 자체를 부여하지는 않는다.
+
+    * 예를 들어 최대 권한을 s3, Cloudwatch, ec2만 지정하면 IAM에 대한 권한을 부여하더라도 작업이 거부된다.
+
+
+  5. IAM Identity Center
+
+    * 개별 계정을 IAM으로 따로 관리하지 않고, 여러 AWS 계정과 클라우드 애플리케이션에 대한 접근 권한을 중앙에서 관리할 수 있다.
+
+	* 여러 계정에 일괄적으로 권한을 할당할 수 있다.
+
+
+  6. Cross Account Access
+
+    * 다른 계정의 리소스에 접근할 수 있도록 하는 서비스
+
+	* 리소스를 직접 공유하려면 해당 리소스가 Resource-Based Policy를 지원해야 한다.
+
+	* Role을 이용할 수도 있다.
+
+	* Identity-Based Policy와 Resource-Based Policy 둘 중 하나만 있으면 된다.
+
+
+  7. Federation
+
+    * 외부의 인증 시스템을 활용해 별도의 IAM 사용자 생성 없이 AWS 리소스에 안전하게 임시 접근하도록 지원하는 보안 메커니즘
